@@ -40,7 +40,7 @@ const observer1 = new IntersectionObserver((pages,observer)=>{
       page.target.classList.remove("visible")
     }
   })
-},{threshold:0.5})
+},{threshold:0.8})
 
 const observer2 = new IntersectionObserver((pages,observer)=>{
   pages.forEach(page=>{
@@ -52,7 +52,7 @@ const observer2 = new IntersectionObserver((pages,observer)=>{
     }
     
   })
-},{threshold:0.4})
+},{threshold:0.8})
 observer1.observe(aboutPageTextContainer)
 sectionHeadings.forEach(sectionHeading=>{
   observer2.observe(sectionHeading)

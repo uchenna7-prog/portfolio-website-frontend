@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body > div{
+            width: 400px;
+            border:1px solid black;
+        }
+        #project-gallery{
+            height: 400px;
+            width: 400px;
+            overflow: hidden;
+            border:1px solid black;
+        }
+        .image{
+            flex-shrink: 0;
+            height: 400px;
+            width: 400px;
+        }
+        #images-container{
+            display: flex;
+            flex-direction: row;
+            transition: transform 2s ease-in-out;
+           
+        }
+        .progress-circle{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            border:1px solid black;
+
+        }
+        #progress-circles-container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: end;
+
+        }
+        #progress-circle1{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>CGPA CALCULATOR FOR NIGERIAN STUDENTS</h2>
+    <div>
+        <div id="project-gallery">
+            <div id="images-container">
+                <img src="cgpa-calculator.png" class="image">
+                <img src="gpaCalc.jpg" class="image">
+                <img src="cgpaCalc.jpg" class="image">
+            </div>
+        </div>
+        <div id="progress-circles-container">
+            <div id="progress-circle1" class="progress-circle"></div>
+            <div class="progress-circle"></div>
+            <div class="progress-circle"></div>
+            <div class="progress-circle"></div>
+        </div>
+    </div>
+  
+    <script>
+        const imagesContainer = document.getElementById("images-container")
+        const images = document.querySelectorAll(".image")
+        const imagesNumber = images.length
+        const progressCircles = document.querySelectorAll(".progress-circle")
+        const firstProgressCircle = document.getElementById("progress-circle1")
+        let currentImage = 1
+        setInterval(()=>{
+            if(currentImage === imagesNumber){
+                progressCircles[currentImage].style.backgroundColor = "black"
+                progressCircles[currentImage-1].style.backgroundColor = "white"
+                currentImage = 0
+            }
+            imagesContainer.style.transform = `translateX(${-400 * currentImage}px)`
+            progressCircles[currentImage].style.backgroundColor = "black"
+            
+            currentImage++ 
+
+              
+            
+        },3000)
+    </script>
+</body>
+</html>
