@@ -14,9 +14,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.min.js"></script>
-    <script scr="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.worker.min.js"></script>
-
   <style>
 
   *{
@@ -134,32 +131,20 @@
     border-width: 1px;
   }
 
+  #resume-pdf{
+    display: block;
+    width: 80%;
+    height: auto;
+  }
 
-  .pdf-wrapper {
+  #resume-container{
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    
   }
 
-  .pdf-container {
-    width: 85vw;
-    max-height: 85vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #111;
-    border-radius: 10px;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-    padding: 10px;
-  }
-
-  #resume-pdf-canvas {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-  }
 
   #footer-page{
   background: radial-gradient(125% 125% at 50% 10%,white 40%,#0b5085 100%);
@@ -286,6 +271,9 @@
   html{
     font-size: 14px;
   }
+  #resume-pdf{
+    width: 85%;
+  }
 }
 
 
@@ -325,7 +313,10 @@
   <main>
       <section>
           <h2 class="section-heading">MY RESUME.</h2>
-          <canvas id="resume-pdf-canvas"></canvas>
+          <div id="resume-container">
+            <iframe src="resume.pdf" id="resume-pdf"></iframe>
+          </div>
+         
       </section>
      <footer id="footer-page" class="change-page-color">
         <a id="back-to-top-text-and-icon-container" href="#home-page" class="change-text-color-container">
@@ -366,35 +357,6 @@
   const homeButton = document.getElementById("home-button");
   const backToTopTextAndIconContainer = document.getElementById("back-to-top-text-and-icon-container");
 
-  const resumePdfFilePath = "resume.pdf";
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.worker.min.js";
-
-  let pdfDoc = null;
-  let pageNum = 1;
-  let scale = 1.5;
-  const canvas = document.getElementById("resume-pdf-canvas");
-  const ctx = canvas.getContext("2d");
-
-  async function renderPage(num) {
-    const page = await pdfDoc.getPage(num);
-    const viewport = page.getViewport({ scale });
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderContext = {
-      canvasContext: ctx,
-      viewport: viewport,
-    };
-
-    await page.render(renderContext).promise;
-  }
-
-  pdfjsLib.getDocument(resumePdfFilePath).promise.then((pdf) => {
-    pdfDoc = pdf;
-    renderPage(pageNum);
-  });
 
   mobileMenuOptions.forEach(option=>{
     option.addEventListener("click",()=>{
