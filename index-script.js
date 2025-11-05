@@ -24,7 +24,7 @@ const contrastButton = document.getElementById("contrast-button");
 
 const aboutPageTextContainer = document.getElementById("about-page-text-container")
 const sectionHeadings = document.querySelectorAll(".section-heading")
-const projectContainers = document.querySelectorAll(".project-container")
+
 
 const tLines = document.querySelectorAll(".t-line")
 const tCircles = document.querySelectorAll(".t-circle")
@@ -123,42 +123,6 @@ function retainMode(){
 
 retainMode()
 
-const observer1 = new IntersectionObserver((pages,observer)=>{
-  pages.forEach(page=>{
-    if(page.isIntersecting){
-      page.target.classList.add("visible")
-   
-    }
-    else{
-      page.target.classList.remove("visible")
-    }
-  })
-},{threshold:0.8})
-
-const observer2 = new IntersectionObserver((pages,observer)=>{
-  pages.forEach(page=>{
-    if(page.isIntersecting){
-      page.target.classList.add("visible")
-    }
-    else{
-      page.target.classList.remove("visible") 
-    }
-    
-  })
-},{threshold:0.8})
-observer1.observe(aboutPageTextContainer)
-sectionHeadings.forEach(sectionHeading=>{
-  observer2.observe(sectionHeading)
-})
-projectContainers.forEach(projectContainer=>{
-  observer2.observe(projectContainer)
-})
-tLines.forEach(tLine=>{
-  observer2.observe(tLine)
-})
-tCircles.forEach(tCircle=>{
-  observer1.observe(tCircle)
-})
 homeButton.addEventListener("click",e=>{
   e.preventDefault();
   window.scrollTo({top:0,behaviour:"smooth"});
