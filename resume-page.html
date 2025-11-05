@@ -211,8 +211,6 @@
     padding: 6px 14px;
     font-size: 0.8 rem;
     cursor: pointer;
-    background-color: black;
-    color:white;
   }
   .cut-bottom-left{
   clip-path: polygon(0% 0%,100% 0%,100% 100%,20% 100%,0% 80%);
@@ -266,14 +264,65 @@
     background-color: white;
     color: black;
   }
+
+  .change-background-color-container.dark-mode-background{
+  background-color:#01192b;
+
+}
+
+.change-border-color-container.dark-mode-border{
+  border-color: white;
+}
+
+.change-text-color-container.dark-mode-text{
+  color: white;
+}
+
+.change-page-color.dark-mode-image{
+  background-color: black;
+}
+
+.change-button-color-container.dark-mode-button{
+  background-color:white;
+  color: black;
+}
+
+.change-background-color-container{
+  background-color:#a5c5db;
+  transition: background-color 1s ease-in-out;
+}
+
+.change-border-color-container{
+  border-color:black;
+  transition: border-color 1s ease-in-out;
+}
+
+.change-text-color-container{
+  color:black;
+  transition:color 1s ease-in-out;
+}
+.change-page-color{
+  background-color: white;
+}
+
+.change-button-color-container{
+  background-color: black;
+  color: white;
+  transition: background-color 1s ease-in-out, color 1s ease-in-out ;
+}
   @media(max-width:610px){
 
   html{
     font-size: 14px;
   }
   #resume-pdf{
-    width: 85%;
+    width: 83%;
   }
+  #resume-container{
+    height: 90vh;
+    
+  }
+
 }
 
 
@@ -281,7 +330,7 @@
 
 </style>
   </head>
-  <body>
+  <body class="change-page-color">
 
     <header class="change-text-color-container">
       <span id="home-button" class="material-icons nav-btn change-border-color-container">home</span>
@@ -292,13 +341,13 @@
     </header>
 
     <div id="mobile-menu" class="change-background-color-container">
-      <a id="first-mobile-menu-option" href="index.html #home-page" class="mobile-menu-option change-text-color-container">HOME</a>
-      <a href="index.html #about-page" class="mobile-menu-option change-text-color-container">ABOUT</a>
-      <a href="index.html #services-page" class="mobile-menu-option change-text-color-container">SERVICES</a>
-      <a href="index.html #skills-page" class="mobile-menu-option change-text-color-container">SKILLS</a>
-      <a href="index.html #projects-page" class="mobile-menu-option change-text-color-container">PROJECTS</a>
-      <a href="index.html #experience-page" class="mobile-menu-option change-text-color-container">RESUME SUMMARY</a>
-      <a href="index.html #contact-page" class="mobile-menu-option change-text-color-container">CONTACT</a>
+      <a id="first-mobile-menu-option" href="index.html#home-page" class="mobile-menu-option change-text-color-container">HOME</a>
+      <a href="index.html#about-page" class="mobile-menu-option change-text-color-container">ABOUT</a>
+      <a href="index.html#services-page" class="mobile-menu-option change-text-color-container">SERVICES</a>
+      <a href="index.html#skills-page" class="mobile-menu-option change-text-color-container">SKILLS</a>
+      <a href="index.html#projects-page" class="mobile-menu-option change-text-color-container">PROJECTS</a>
+      <a href="index.html#experience-page" class="mobile-menu-option change-text-color-container">RESUME SUMMARY</a>
+      <a href="index.html#contact-page" class="mobile-menu-option change-text-color-container">CONTACT</a>
 
       <span id="mobile-menu-social-icons-container">
         <a class="mobile-menu-social-icon change-text-color-container change-border-color-container" href="https://www.linkedin.com/in/uchenna-uchendu-b2a0a8307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=andriod_app"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
@@ -312,7 +361,7 @@
 
   <main>
       <section>
-          <h2 class="section-heading">MY RESUME.</h2>
+          <h2 class="section-heading change-text-color-container">MY RESUME.</h2>
           <div id="resume-container">
             <iframe src="https://docs.google.com/gview?url=https://uchendu-uchenna-portfolio.vercel.app/resume.pdf&embedded=true" id="resume-pdf"></iframe>
           </div>
@@ -327,7 +376,7 @@
           <h1>LET'S CREATE </h1>
           <h1>SOMETHING AMAZING.</h1>
           <h3>Ready to craft modern, interactive ,and user-friendly interfaces?.</h3>
-          <button id="contact-me-btn" class="cut-bottom-left" onclick="window.location.href='index.html #contact-page'">Contact Me</button>
+          <button id="contact-me-btn" class="cut-bottom-left change-button-color-container" onclick="window.location.href='index.html #contact-page'">Contact Me</button>
         </div>
         <div id="footer-bottom-section-container" class="change-text-color-container">
           <div id="footer-contact-details-container">
@@ -350,12 +399,139 @@
    
   </main>
   <script>
+  const changeBorderColorContainers = document.querySelectorAll(".change-border-color-container");
+  const changeBackgroundColorContainers = document.querySelectorAll(".change-background-color-container");
+  const changeTextColorContainers = document.querySelectorAll(".change-text-color-container");
+  const changeBackgroundImageContainers = document.querySelectorAll(".change-page-color");
+  const changeButtonColorContainers = document.querySelectorAll(".change-button-color-container");
+  
+  
+  const footerPage = document.getElementById("footer-page")
+  const footerSocialIcons = document.querySelectorAll(".footer-social-icon");
+
+  const contrastButton = document.getElementById("contrast-button");
+  
   const mobileMenuOptions =  document.querySelectorAll(".mobile-menu-option");
   const menuButton = document.getElementById("menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
 
   const homeButton = document.getElementById("home-button");
   const backToTopTextAndIconContainer = document.getElementById("back-to-top-text-and-icon-container");
+
+  
+function switchMode(){
+   if(localStorage.getItem("mode")==="darkMode"){
+    contrastButton.textContent="dark_mode";
+    localStorage.setItem("mode","lightMode")
+    footerPage.classList.remove("dark-mode");
+    mobileMenu.classList.remove("dark-mode");
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-border");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.remove("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.remove("dark-mode");
+    });
+  
+  }
+
+  else{
+            
+    contrastButton.textContent="light_mode";
+    localStorage.setItem("mode","darkMode")
+    footerPage.classList.add("dark-mode");
+    mobileMenu.classList.add("dark-mode");
+
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-border");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.add("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.add("dark-mode");
+    });
+
+  }
+}
+
+
+function retainMode(){
+   if(localStorage.getItem("mode")==="lightMode"){
+    contrastButton.textContent="dark_mode";
+    footerPage.classList.remove("dark-mode");
+    mobileMenu.classList.remove("dark-mode");
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-border");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.remove("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.remove("dark-mode");
+    });
+  
+  }
+
+  else{
+            
+    contrastButton.textContent="light_mode";
+    footerPage.classList.add("dark-mode");
+    mobileMenu.classList.add("dark-mode");
+
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-border");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.add("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.add("dark-mode");
+    });
+
+  }
+}
+
+  retainMode()
+
 
 
   mobileMenuOptions.forEach(option=>{
@@ -383,8 +559,13 @@
   window.scrollTo({top:0,behaviour:"smooth"});
 });
 homeButton.addEventListener("click",e=>{
-  window.location.href="index.html #home-page";
+  window.location.href="index.html#home-page";
 });
+
+
+
+contrastButton.addEventListener("click", switchMode);
+
 
 </script>
 

@@ -1,3 +1,5 @@
+if(localStorage.getItem("mode")===null)
+  localStorage.setItem("mode","lightMode")
 
 const changeBorderColorContainers = document.querySelectorAll(".change-border-color-container");
 const changeBackgroundColorContainers = document.querySelectorAll(".change-background-color-container");
@@ -29,6 +31,97 @@ const tCircles = document.querySelectorAll(".t-circle")
 
 const technologiesUsedContainers = document.querySelectorAll(".technologies-used-container > div")
 const projectButtons = document.querySelectorAll(".project-btn")
+
+function retainMode(){
+  
+ if(localStorage.getItem("mode")==="lightMode"){
+    contrastButton.textContent="dark_mode";
+    homePage.classList.remove("dark-mode");
+    footerPage.classList.remove("dark-mode");
+    mobileMenu.classList.remove("dark-mode");
+    sendButton.classList.remove("dark-mode");
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-border");
+    });
+    changeBorderColor2Containers.forEach(container=>{
+      container.classList.remove("dark-mode");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.remove("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.remove("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.remove("dark-mode");
+    });
+    homePageSocialIcons.forEach(icon=>{
+      icon.classList.remove("dark-mode")
+    })
+
+    technologiesUsedContainers.forEach(container=>{
+      container.classList.remove("dark-mode")
+    })
+
+    projectButtons.forEach(button=>{
+      button.classList.remove("dark-mode")
+    })
+
+    
+  }
+
+  else{       
+    contrastButton.textContent="light_mode";
+    homePage.classList.add("dark-mode");
+    footerPage.classList.add("dark-mode");
+    mobileMenu.classList.add("dark-mode");
+    sendButton.classList.add("dark-mode");
+
+    changeBorderColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-border");
+    });
+    changeBorderColor2Containers.forEach(container=>{
+      container.classList.add("dark-mode");
+    });
+    changeTextColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-text");
+    });
+    changeBackgroundColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-background");
+    });
+    changeBackgroundImageContainers.forEach(container=>{
+      container.classList.add("dark-mode-image");
+    });
+    changeButtonColorContainers.forEach(container=>{
+      container.classList.add("dark-mode-button");
+    });
+    footerSocialIcons.forEach(icon=>{
+      icon.classList.add("dark-mode");
+    });
+    homePageSocialIcons.forEach(icon=>{
+      icon.classList.add("dark-mode")
+    })
+
+    technologiesUsedContainers.forEach(container=>{
+      container.classList.add("dark-mode")
+    })
+
+    projectButtons.forEach(button=>{
+      button.classList.add("dark-mode")
+    })
+
+  }
+
+  
+}
+
+retainMode()
 
 const observer1 = new IntersectionObserver((pages,observer)=>{
   pages.forEach(page=>{
@@ -76,90 +169,90 @@ backToTopTextAndIconContainer.addEventListener("click",e=>{
 });
 
 contrastButton.addEventListener("click", () => {
-  if(homePage.classList.contains("dark-mode")){
-    homePage.classList.toggle("dark-mode");
-    footerPage.classList.toggle("dark-mode");
-    mobileMenu.classList.toggle("dark-mode");
-    sendButton.classList.toggle("dark-mode");
+  if(localStorage.getItem("mode")==="darkMode"){
+    contrastButton.textContent="dark_mode";
+    localStorage.setItem("mode","lightMode")
+    homePage.classList.remove("dark-mode");
+    footerPage.classList.remove("dark-mode");
+    mobileMenu.classList.remove("dark-mode");
+    sendButton.classList.remove("dark-mode");
     changeBorderColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-border");
+      container.classList.remove("dark-mode-border");
     });
     changeBorderColor2Containers.forEach(container=>{
-      container.classList.toggle("dark-mode");
+      container.classList.remove("dark-mode");
     });
     changeTextColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-text");
+      container.classList.remove("dark-mode-text");
     });
     changeBackgroundColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-background");
+      container.classList.remove("dark-mode-background");
     });
     changeBackgroundImageContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-image");
+      container.classList.remove("dark-mode-image");
     });
     changeButtonColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-button");
+      container.classList.remove("dark-mode-button");
     });
     footerSocialIcons.forEach(icon=>{
-      icon.classList.toggle("dark-mode");
+      icon.classList.remove("dark-mode");
     });
     homePageSocialIcons.forEach(icon=>{
-      icon.classList.toggle("dark-mode")
+      icon.classList.remove("dark-mode")
     })
 
     technologiesUsedContainers.forEach(container=>{
-      container.classList.toggle("dark-mode")
+      container.classList.remove("dark-mode")
     })
 
     projectButtons.forEach(button=>{
-      button.classList.toggle("dark-mode")
+      button.classList.remove("dark-mode")
     })
 
-    contrastButton.textContent="dark_mode";
+    
   }
 
   else{
             
     contrastButton.textContent="light_mode";
-
-    homePage.classList.toggle("dark-mode");
-    footerPage.classList.toggle("dark-mode");
-    mobileMenu.classList.toggle("dark-mode");
-    sendButton.classList.toggle("dark-mode");
+    localStorage.setItem("mode","darkMode")
+    homePage.classList.add("dark-mode");
+    footerPage.classList.add("dark-mode");
+    mobileMenu.classList.add("dark-mode");
+    sendButton.classList.add("dark-mode");
 
     changeBorderColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-border");
+      container.classList.add("dark-mode-border");
     });
     changeBorderColor2Containers.forEach(container=>{
-      container.classList.toggle("dark-mode");
+      container.classList.add("dark-mode");
     });
     changeTextColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-text");
+      container.classList.add("dark-mode-text");
     });
     changeBackgroundColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-background");
+      container.classList.add("dark-mode-background");
     });
     changeBackgroundImageContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-image");
+      container.classList.add("dark-mode-image");
     });
     changeButtonColorContainers.forEach(container=>{
-      container.classList.toggle("dark-mode-button");
+      container.classList.add("dark-mode-button");
     });
     footerSocialIcons.forEach(icon=>{
-      icon.classList.toggle("dark-mode");
+      icon.classList.add("dark-mode");
     });
     homePageSocialIcons.forEach(icon=>{
-      icon.classList.toggle("dark-mode")
+      icon.classList.add("dark-mode")
     })
 
     technologiesUsedContainers.forEach(container=>{
-      container.classList.toggle("dark-mode")
+      container.classList.add("dark-mode")
     })
 
     projectButtons.forEach(button=>{
-      button.classList.toggle("dark-mode")
+      button.classList.add("dark-mode")
     })
-
-
 
   }
 
