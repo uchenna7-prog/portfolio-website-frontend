@@ -63,7 +63,7 @@
               <button id="resume-button" class="cut-bottom-left change-text-color-container change-button-color-container change-text-color-container" onclick="window.location.href='resume-page.html'">Résumé</button>
           </div>
         </div>
-        <span id="scroll-down-arrow" class="material-icons change-text-color-container">keyboard_arrow_down</span>
+        <span onclick="window.location.href='#about-page'" id="scroll-down-arrow" class="material-icons change-text-color-container">keyboard_arrow_down</span>
 
       </section>
 
@@ -82,17 +82,17 @@
       <section id="services-page" class="change-page-color change-text-color-container">
         <h1 class="section-heading change-text-color-container">SERVICES.</h1>
         <div id="services-container">
-          <div class="service-card change-background-color-container change-text-color-container">
+          <div class="service-card change-background-color-container change-text-color-container change-background-color-on-hover">
             <h3 class="title">FRONTEND <i class="fa fa-code" aria-hidden="true"></i></h3>
             I create modern, responsive, and fast web interfaces with HTML, CSS, and JavaScript frameworks.
             <button class="service-btn cut-bottom-left change-button-color-container" onclick="window.location.href='#contact-page'">Contact Me</button>
           </div>
-          <div class="service-card change-background-color-container change-text-color-container">
+          <div class="service-card change-background-color-container change-text-color-container change-background-color-on-hover">
             <h3 class="title">FREELANCE</h3>
             I am available for freelance work to offer reliable and high-quality website development.
             <button class="service-btn cut-bottom-left change-button-color-container" onclick="window.location.href='#contact-page'">Contact Me</button>
           </div>
-          <div class="service-card change-background-color-container change-text-color-container">
+          <div class="service-card change-background-color-container change-text-color-container change-background-color-on-hover">
             <h3 class="title">INTERNSHIP</h3>
             I am open to join a team as an intern and contribute to creative and functional web solutions.
             <button class="service-btn cut-bottom-left change-button-color-container" onclick="window.location.href='#contact-page'">Contact Me</button>
@@ -115,7 +115,7 @@
         <h2 class="section-heading change-text-color-container">RECENT PROJECTS.</h2>
         <div>
       
-          <div class="project-container change-border-color-container change-background-color-container change-text-color-container">
+          <div class="project-container change-border-color-container change-background-color-container change-text-color-container change-background-color-on-hover">
             <img src="portfolio-website.png" alt="Project 1" class="project-pic change-border-color-container">
 
             <h3>PORTFOLIO WEBSITE</h3>
@@ -131,14 +131,14 @@
                 <span>live demo</span> 
                 <i class="fa-solid fa-link"></i>
               </div>
-              <div class="change-text-color-container project-btn change-page-color change-border">
+              <div onclick="window.location.href='https://github.com/uchenna7-prog/portfolio-website'" class="change-text-color-container project-btn change-page-color change-border">
                 <span>source code</span> 
                 <i class="fa-brands fa-github fa-lg"></i>
               </div>
             </div>
           </div>
       
-          <div class="project-container change-border-color-container change-background-color-container change-text-color-container">
+          <div class="project-container change-border-color-container change-background-color-container change-text-color-container change-background-color-on-hover">
             <img src="cgpa-calculator.png" alt="Project 2" class="project-pic change-border-color-container">
             <h3>CGPA CALCULATOR</h3>
             <div class="technologies-used-container">
@@ -152,7 +152,7 @@
                 <span>live demo</span> 
                 <i class="fa-solid fa-link"></i>
               </div>
-              <div class="change-text-color-container project-btn change-page-color">
+              <div onclick="window.location.href='https://github.com/uchenna7-prog/CGPA-Calculator-For-Nigerian-Students-5.0-scale-'" class="change-text-color-container project-btn change-page-color">
                 <span>source code</span> 
                 <i class="fa-brands fa-github fa-lg"></i>
               </div>
@@ -160,7 +160,7 @@
 
           </div>
 
-          <div class="project-container change-border-color-container change-background-color-container change-text-color-container">
+          <div class="project-container change-border-color-container change-background-color-container change-text-color-container change-background-color-on-hover">
             <img src="image-editor.jpeg" alt="Project 3" class="project-pic change-border-color-container">
             <h3>IMAGE EDITOR APP</h3>
             <div class="technologies-used-container">
@@ -183,56 +183,54 @@
           </div>
         </div>
           <a class="see-more-text-and-icon-container change-text-color-container" href="project-page.html">
-            <span class="view-more-text">See All Projects</span>
+            <span class="new-window-text">See All Projects</span>
             <span class="material-icons view-more-arrow change-text-color-container">arrow_forward</span>
           </a>
       </section>
 
       <section id="experience-page" class="change-page-color">
-        <h2 class="section-heading change-text-color-container">RESUME SUMMARY</h2>
+        <h1 class="section-heading change-text-color-container">RESUME HIGHLIGHTS.</h1>
+        <div id="timeline">
+          <div id="progress-line"></div>
+          <div id="moving-dot"></div>
 
-        <div id="time-line" class="change-text-color-container">
-          <div class="resume-section-heading-container">
-            <div class="t-circle change-border-color-container"></div>
-            <div>WORK EXPERIENCE</div>
-          </div>
-          
-          <div class="t-line change-border-color-container">
-            <p><strong>FRONT-END WEB DEVELOPER (FREELANCE)</strong></p>
-            <p><strong>January 2024 - Present</strong></p>
-            <p>Building responsive and user-friendly websites using HTML, CSS, and JavaScript. Focused on creating modern designs and clean, maintainable code.</p>
+          <div class="dot" id="first-dot"></div>
+          <div class="dot" id="second-dot"></div>
+          <div class="dot" id="third-dot"></div>
+
+          <div class="item">
+            <h3>WORK EXPERIENCE</h3>
+            <span>Freelance Developer (<span class="date">January 2025 - present</span>)</span>
+            <p>Collaborate with clients to design and develop custom web applications. Provide end-to-end solutions - from planning and coding to testing and deployment - ensuring efficient performance and modern user experience.</p>
           </div>
 
-          <div class="resume-section-heading-container">
-            <div class="t-circle change-border-color-container"></div>
-            <div>EDUCATION</div>
+          <div class="item">
+            <h3>EDUCATION</h3>
+            <span>University of Port Harcourt - B.Sc. Computer Science (<span class="date">2024 - 2028</span>)</span>
+            <p>Studying the principles of computing, algorithms, artificial intelligence, and system design. Gaining hands on experience by building real-world projects that apply theoretical knowledge to pratical technology problems.</p>
           </div>
-          <div class="t-line change-border-color-container">
-            <p><strong>B.Sc. IN COMPUTER SCIENCE</strong></p>
-            <p><strong>University of Port Harcourt | 2024 - Present</strong></p>
-            <p>Pursuing a Computer Science degree with interests in Web development and Artificial Intelligence.</p>
+
+          <div class="item">
+            <h3>LANGUAGES</h3>
+            <ul id="language-container">
+              <li>English - Fluent</li>
+              <li>Igbo - Native</li>
+            </ul>
           </div>
-          <div class="resume-section-heading-container">
-            <div class="t-circle change-border-color-container"></div>
-            <div>LANGUAGES</div>
+          <div class="item">
+            <a class="see-more-text-and-icon-container change-text-color-container" href="project-page.html">
+              <span class="new-window-text">Proceed to Resume</span>
+              <span class="material-icons view-more-arrow change-text-color-container">arrow_forward</span>
+            </a>
           </div>
-          <div class="t-line change-border-color-container">
-            <p>English (Fluent)</p>
-            <p>Igbo (Native)</p>
-          </div>
-        </div>
-        
-        <a class="see-more-text-and-icon-container change-text-color-container" href="resume-page.html" >
-          <div class="view-more-text">Proceed to Full Resume</div>
-          <span class="material-icons view-more-arrow change-text-color-container">arrow_forward</span>
-        </a>
-      
+      </div>
+
       </section>
 
       <section id="contact-page" class="change-page-color">
         <h2 class="section-heading change-text-color-container">CONTACT.</h2>
         <form class="change-text-color-container">
-          <p>Want to work together or have a question? Get in touch - or email me directly at <a href="mailto:uchenduuchenna7@gmail.com"><strong class="change-text-color-container">uchenduuchenna7@gmail.com</strong></a> by submitting the form below.</p>
+          <p>Want to work together or have a question? Get in touch - or email me directly at <a href="mailto:uchenduuchenna7@gmail.com"><strong class="change-text-color-container new-window-text">uchenduuchenna7@gmail.com</strong></a> by submitting the form below.</p>
             <input type="text" placeholder="Name" class="form-entry change-text-color-container change-border-color2 change-page-color">
             <input type="text" placeholder="Email" class="form-entry change-text-color-container change-border-color2 change-page-color">
             <textarea rows ="20"  placeholder="Message" class="form-entry change-text-color-container change-border-color2 change-page-color"></textarea>
@@ -264,9 +262,12 @@
             </span>
               <div id="footer-email-container">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:uchenduuchenna7@gmail.com" class="change-text-color-container">uchenduuchenna7@gmail.com</a>
+                <a href="mailto:uchenduuchenna7@gmail.com" class="change-text-color-container new-window-text">uchenduuchenna7@gmail.com</a>
               </div>
-              <span><i class="fa-brands fa-whatsapp"></i> +234 9079116980</span>
+              <div id="watsapp-container">
+                <i class="fa-brands fa-whatsapp"></i> 
+                <a href="https://wa.link/m7opjb"  class="change-text-color-container new-window-text">+234 9079116980</a>
+              </div>
           </div>
           <p>© 2025 Uchendu Uchenna. All rights reserved.</p>
         </div>

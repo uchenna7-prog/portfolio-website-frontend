@@ -7,6 +7,7 @@ const changeTextColorContainers = document.querySelectorAll(".change-text-color-
 const changeBackgroundImageContainers = document.querySelectorAll(".change-page-color");
 const changeButtonColorContainers = document.querySelectorAll(".change-button-color-container");
 const changeBorderColor2Containers = document.querySelectorAll(".change-border-color2")
+const changeBackgroundColorOnHoverContainers = document.querySelectorAll(".change-background-color-on-hover")
 
 const sendButton = document.getElementById("send-button");
 const homePage = document.getElementById("home-page");
@@ -52,6 +53,9 @@ function retainMode(){
     changeBackgroundColorContainers.forEach(container=>{
       container.classList.remove("dark-mode-background");
     });
+    changeBackgroundColorOnHoverContainers.forEach(container=>{
+      container.classList.remove("dark-mode-hover");
+    });
     changeBackgroundImageContainers.forEach(container=>{
       container.classList.remove("dark-mode-image");
     });
@@ -94,6 +98,9 @@ function retainMode(){
     });
     changeBackgroundColorContainers.forEach(container=>{
       container.classList.add("dark-mode-background");
+    });
+    changeBackgroundColorOnHoverContainers.forEach(container=>{
+      container.classList.add("dark-mode-hover");
     });
     changeBackgroundImageContainers.forEach(container=>{
       container.classList.add("dark-mode-image");
@@ -152,6 +159,9 @@ contrastButton.addEventListener("click", () => {
     changeBackgroundColorContainers.forEach(container=>{
       container.classList.remove("dark-mode-background");
     });
+    changeBackgroundColorOnHoverContainers.forEach(container=>{
+      container.classList.remove("dark-mode-hover");
+    });
     changeBackgroundImageContainers.forEach(container=>{
       container.classList.remove("dark-mode-image");
     });
@@ -196,6 +206,9 @@ contrastButton.addEventListener("click", () => {
     });
     changeBackgroundColorContainers.forEach(container=>{
       container.classList.add("dark-mode-background");
+    });
+    changeBackgroundColorOnHoverContainers.forEach(container=>{
+      container.classList.add("dark-mode-hover");
     });
     changeBackgroundImageContainers.forEach(container=>{
       container.classList.add("dark-mode-image");
@@ -242,5 +255,62 @@ menuButton.addEventListener("click", () => {
 });
 
 
+const observer = new IntersectionObserver((entries,observer)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible")
+      observer.unobserve(entry.target)
+    }
+  })
+},{threshold:0.5})
 
 
+observer.observe(aboutPageTextContainer)
+sectionHeadings.forEach(sectionHeading=>{
+  observer.observe(sectionHeading)
+})
+const progressLine=document.getElementById('progress-line');
+const movingDot=document.getElementById('moving-dot');
+const dots=document.querySelectorAll('.dot');
+const timeline=document.getElementById('timeline');
+
+window.addEventListener('scroll',()=>{
+  const rect = timeline.getBoundingClientRect();
+  const timelineTop = rect.top
+  const timelineHeight = timeline.offsetHeight
+  const timelineBottom = timelineTop + timeline.offsetHeight
+
+  const scrollY = window.screenY + window.innerHeight / 2
+
+  const progressLineHeight = Math.min(Math.max(scrollY - timelineTop,0),timeline.offsetHeight)
+
+  const firstTimeLineDot = document.getElementById('first-dot')
+  const secondTimeLineDot = document.getElementById('second-dot')
+  const thirdTimeLineDot = document.getElementById('third-dot')
+
+  const itemContainers = document.querySelectorAll(".item")
+ 
+  firstTimeLineDot.style.top = itemContainers[0].clientHeight + "px"
+
+  secondTimeLineDot.style.top =`${parseFloat(itemContainers[0].clientHeight)} + ${parseFloat(itemContainers[1].offsetHeight)}`+ "px"
+
+
+  thirdTimeLineDot.style.top =`${parseFloat(itemContainers[1].clientHeight)} + ${parseFloat(itemContainers[2].offsetHeight)}`+ "px"
+
+    
+  
+
+
+
+  progressLine.style.height = progressLineHeight + "px"
+  movingDot.style.top = progressLineHeight + "px"
+
+  dots.forEach(dot=>{
+    if(parseFloat(progressLineHeight) > parseFloat(dot.offsetTop))
+      dot.classList.add("filled")
+    else{
+      dot.classList.remove("filled")
+    }
+  })
+  
+});

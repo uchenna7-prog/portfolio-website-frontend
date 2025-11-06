@@ -144,7 +144,9 @@
     justify-content: center;
     
   }
-
+  .new-window-text:hover{
+  text-decoration: underline;
+}
 
   #footer-page{
   background: radial-gradient(125% 125% at 50% 10%,white 40%,#0b5085 100%);
@@ -236,7 +238,7 @@
   flex-direction: column;
   }
 
-  #footer-email-container{
+  #footer-email-container,#watsapp-container{
   display: flex;
   align-items: center;
   gap:10px;
@@ -310,11 +312,42 @@
   color: white;
   transition: background-color 1s ease-in-out, color 1s ease-in-out ;
 }
-  @media(max-width:610px){
+
+@media(max-width:1080px){
+
+  .mobile-menu-option::before{
+    content:none;
+
+}
+  .mobile-menu-option:hover::before{ 
+    content:none;
+   
+ 
+}
+  #first-mobile-menu-option{
+    margin-top: 9vh;
+}
+
+}
+
+@media(max-width:610px){
 
   html{
     font-size: 14px;
   }
+
+  .mobile-menu-option::before{
+    content:none;
+
+}
+  .mobile-menu-option:hover::before{ 
+    content:none;
+   
+ 
+}
+  #first-mobile-menu-option{
+    margin-top: 9vh;
+}
   #resume-pdf{
     width: 90%;
   }
@@ -388,9 +421,12 @@
             </span>
               <div id="footer-email-container">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:uchenduuchenna7@gmail.com" class="change-text-color-container">uchenduuchenna7@gmail.com</a>
+                <a href="mailto:uchenduuchenna7@gmail.com" class="change-text-color-container new-window-text">uchenduuchenna7@gmail.com</a>
               </div>
-              <span><i class="fa-brands fa-whatsapp"></i> +234 9079116980</span>
+              <div id="watsapp-container">
+                <i class="fa-brands fa-whatsapp"></i> 
+                <a href="https://wa.link/m7opjb"  class="change-text-color-container new-window-text">+234 9079116980</a>
+              </div>
           </div>
           <p>© 2025 Uchendu Uchenna. All rights reserved.</p>
         </div>
