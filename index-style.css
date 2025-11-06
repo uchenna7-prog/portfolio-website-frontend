@@ -527,7 +527,7 @@ animation: move 2s infinite;
 }
 
 #timeline{
-  width: 80%;
+  width: 90%;
   height: min-content;
   position:relative;
   margin:0 auto;
