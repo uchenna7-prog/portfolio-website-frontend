@@ -261,8 +261,8 @@ const observer = new IntersectionObserver((entries,observer)=>{
   })
 },{threshold:0.5})
 
-
 observer.observe(aboutPageTextContainer)
+
 sectionHeadings.forEach(sectionHeading=>{
   observer.observe(sectionHeading)
 })
