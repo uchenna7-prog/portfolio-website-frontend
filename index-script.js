@@ -16,6 +16,7 @@ const footerSocialIcons = document.querySelectorAll(".footer-social-icon");
 const homePageSocialIcons = document.querySelectorAll(".homepage-social-icon")
 const homeButton = document.getElementById("home-button");
 const backToTopTextAndIconContainer = document.getElementById("back-to-top-text-and-icon-container");
+const mobileMenuHomeBtn = document.getElementById("first-mobile-menu-option")
 
 const mobileMenuOptions =  document.querySelectorAll(".mobile-menu-option");
 const menuButton = document.getElementById("menu-button");
@@ -135,7 +136,10 @@ backToTopTextAndIconContainer.addEventListener("click",e=>{
   e.preventDefault();
   window.scrollTo({top:0,behaviour:"smooth"});
 });
-
+mobileMenuHomeBtn.addEventListener("click",e=>{
+  e.preventDefault();
+  window.scrollTo({top:0,behaviour:"smooth"});
+});
 contrastButton.addEventListener("click", () => {
   if(localStorage.getItem("mode")==="darkMode"){
     contrastButton.textContent="dark_mode";
@@ -294,11 +298,6 @@ window.addEventListener('scroll',()=>{
 
   thirdTimeLineDot.style.top =`${parseFloat(itemContainers[0].clientHeight) + parseFloat(itemContainers[1].offsetHeight)+space1+space2}px`
 
-  
-    
-  
-
-
 
   progressLine.style.height = progressLineHeight + "px"
   movingDot.style.top = progressLineHeight + "px"
@@ -312,3 +311,42 @@ window.addEventListener('scroll',()=>{
   })
   
 });
+
+
+
+ const form = document.getElementById('contactForm');
+  const responseMsg = document.getElementById('responseMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    try {
+      const res = await fetch('http://127.0.0.1:5000/contact', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        responseMsg.textContent = "✅ Message sent successfully!";
+        responseMsg.style.color = "green";
+        form.reset();
+      } else {
+        responseMsg.textContent = "❌ Failed to send message. Try again.";
+        responseMsg.style.color = "red";
+      }
+
+    } catch (error) {
+      responseMsg.textContent = "⚠️ Error connecting to server.";
+      responseMsg.style.color = "orange";
+      console.error(error);
+    }
+  });
