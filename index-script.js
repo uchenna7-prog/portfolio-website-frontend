@@ -314,9 +314,9 @@ window.addEventListener('scroll',()=>{
 
 
 
- const form = document.getElementById('contactForm');
-  const responseMsg = document.getElementById('responseMessage');
-
+const form = document.getElementById('contactForm');
+const responseMsg = document.getElementById('responseMessage');
+const contactFormTop = form.getBoundingClientRect().top
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -336,17 +336,20 @@ window.addEventListener('scroll',()=>{
       const data = await res.json();
 
       if (data.success) {
-        responseMsg.textContent = "✅ Message sent successfully!";
-        responseMsg.style.color = "green";
+        responseMsg.textContent = `Hi ${name}, thanks for reaching out! Your message has been received successfully. I will get back to you as soon as possible.`;
         form.reset();
       } else {
-        responseMsg.textContent = "❌ Failed to send message. Try again.";
-        responseMsg.style.color = "red";
+        responseMsg.textContent = "Oops! Your message couldn't be sent.Please check your internet connection and try again.";
+        
       }
 
     } catch (error) {
       responseMsg.textContent = "⚠️ Error connecting to server.";
-      responseMsg.style.color = "orange";
+      window.scrollTo({top:contactFormTop,behavior:"smooth"})
+      form.style.opacity = "0.4"
+      responseMsg.style.display = "flex"
+      responseMsg.style.opacity = "1"
+      
       console.error(error);
     }
   });
