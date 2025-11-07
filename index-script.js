@@ -27,9 +27,6 @@ const aboutPageTextContainer = document.getElementById("about-page-text-containe
 const sectionHeadings = document.querySelectorAll(".section-heading")
 
 
-const tLines = document.querySelectorAll(".t-line")
-const tCircles = document.querySelectorAll(".t-circle")
-
 const technologiesUsedContainers = document.querySelectorAll(".technologies-used-container > div")
 const projectButtons = document.querySelectorAll(".project-btn")
 
@@ -290,13 +287,14 @@ window.addEventListener('scroll',()=>{
 
   const itemContainers = document.querySelectorAll(".item")
  
-  firstTimeLineDot.style.top = itemContainers[0].clientHeight + "px"
+  const space1 =itemContainers[1].getBoundingClientRect().top - itemContainers[0].getBoundingClientRect().bottom 
+  secondTimeLineDot.style.top =`${parseFloat(itemContainers[0].clientHeight)+space1}px`
+  
+  const space2 =itemContainers[2].getBoundingClientRect().top - itemContainers[1].getBoundingClientRect().bottom 
 
-  secondTimeLineDot.style.top =`${parseFloat(itemContainers[0].clientHeight)} + ${parseFloat(itemContainers[1].offsetHeight)}`+ "px"
+  thirdTimeLineDot.style.top =`${parseFloat(itemContainers[0].clientHeight) + parseFloat(itemContainers[1].offsetHeight)+space1+space2}px`
 
-
-  thirdTimeLineDot.style.top =`${parseFloat(itemContainers[1].clientHeight)} + ${parseFloat(itemContainers[2].offsetHeight)}`+ "px"
-
+  
     
   
 

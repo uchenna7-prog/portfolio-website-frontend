@@ -543,7 +543,10 @@ animation: move 2s infinite;
   background:#222;
   z-index: 1;
 }
-
+#language-container{
+  list-style: none;
+  padding-left: 0%;
+}
 
 #progress-line{
   position:absolute;
@@ -586,15 +589,17 @@ animation: move 2s infinite;
 }
 
 .item{
+
   position:relative;
-  padding-left:60px;
+  padding-left:40px;
 
 }
 .item h3{
+  color:#1e6499;
   margin-bottom:6px;
 }
 .item .date{
-  color:blue;
+  color:#1e6499;
   font-size:0.9em;
 
 }
@@ -605,10 +610,6 @@ animation: move 2s infinite;
 }
 
 .form-entry{
-background-image: url("black-background-big.jpeg");
-background-attachment: fixed;
-background-position: center;
-background-size: cover;
 border-width: 1px;
 border-style: solid;
 border-radius: 5px;
@@ -885,6 +886,7 @@ color:black;
   min-width: 75vw;
   height: auto;
   }
+  
 
   .skills-container { 
     display: grid; 
@@ -908,7 +910,15 @@ color:black;
     align-items: center;
     
 }
-
+  .change-background-color-on-hover:hover{
+  transform: scale(1);
+  background-color:#a5c5db;
+}
+.change-background-color-on-hover:hover.dark-mode-hover{
+  transform: scale(1);
+  background-color:#01192b;
+}
+  
   #moving-dot{
   width:15px;
   height:15px;
