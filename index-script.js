@@ -328,7 +328,7 @@ let statusIcon = document.getElementById("status-icon")
     const message = document.getElementById('message').value;
 
     try {
-      const res = await fetch('https://portfolio-website-backend-witp.onrender.com', { 
+      const res = await fetch('https://portfolio-website-backend-witp.onrender.com/contact', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
