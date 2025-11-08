@@ -242,7 +242,7 @@
 
       <section id="contact-page" class="change-page-color">
         <h2 class="section-heading change-text-color-container">CONTACT.</h2>
-        <form id="contactForm" class="change-text-color-container">
+        <form id="contact-form" class="change-text-color-container">
           <p>Interested in working together or have a question? Feel free to reach out - or email me directly at <a href="mailto:uchenduuchenna7@gmail.com"><strong class="change-text-color-container new-window-text">uchenduuchenna7@gmail.com.</strong></a> You can also use the form below to send a message.</p>
             <input id="name" required type="text" placeholder="Name" class="form-entry change-text-color-container change-border-color2 change-page-color">
             <input id="email" required type="email" placeholder="Email" class="form-entry change-text-color-container change-border-color2 change-page-color">
@@ -251,9 +251,16 @@
               <span id="send-button-text" class="change-text-color-container"><i class="fa fa-paper-plane" aria-hidden="true"></i>Send Message</span>
             </button>
         </form>
-        <p id="responseMessage"></p>
 
       </section>
+        <div id="response-message-container">
+          <div id="popup">
+            <i id="status-icon" class="material-icons">check</i>
+            <h3>Success!</h3>
+            <p>Hi uchenna, thanks for reaching out! Your message has been received successfully. I will get back to you as soon as possible.</p>
+            <button id="popup-btn" onclick="closePopup()">OK</button>
+          </div>
+        </div>
       
       <footer id="footer-page" class="change-page-color">
         <a id="back-to-top-text-and-icon-container" href="#home-page" class="change-text-color-container">

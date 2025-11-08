@@ -314,9 +314,12 @@ window.addEventListener('scroll',()=>{
 
 
 
-const form = document.getElementById('contactForm');
-const responseMsg = document.getElementById('responseMessage');
-const contactFormTop = form.getBoundingClientRect().top
+const form = document.getElementById('contact-form');
+const responseMsgContainer = document.getElementById('response-message-container');
+let responseMsg = document.querySelector("#response-message-container p")
+let messageStatus = document.querySelector("#response-message-container h3")
+let statusIcon = document.getElementById("status-icon")
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -325,7 +328,7 @@ const contactFormTop = form.getBoundingClientRect().top
     const message = document.getElementById('message').value;
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/contact', { 
+      const res = await fetch('https://portfolio-website-backend-witp.onrender.com', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -334,22 +337,39 @@ const contactFormTop = form.getBoundingClientRect().top
       });
 
       const data = await res.json();
-
+      responseMsgContainer.classList.add("show")
       if (data.success) {
+        statusIcon.textContent = "check"
+        statusIcon.style.color = "green"
+        messageStatus.textContent="Success!"
         responseMsg.textContent = `Hi ${name}, thanks for reaching out! Your message has been received successfully. I will get back to you as soon as possible.`;
         form.reset();
-      } else {
+      } 
+      else {
+        statusIcon.textContent = "close"
+        statusIcon.style.color = "red"
+        messageStatus.textContent="Failed!"
         responseMsg.textContent = "Oops! Your message couldn't be sent.Please check your internet connection and try again.";
-        
       }
 
-    } catch (error) {
-      responseMsg.textContent = "⚠️ Error connecting to server.";
-      window.scrollTo({top:contactFormTop,behavior:"smooth"})
-      form.style.opacity = "0.4"
-      responseMsg.style.display = "flex"
-      responseMsg.style.opacity = "1"
-      
-      console.error(error);
+    } 
+    
+    catch (error) {
+      statusIcon.textContent = "close"
+      statusIcon.style.color = "red"
+      messageStatus.textContent="Failed!"
+      responseMsgContainer.classList.add("show")
+      responseMsg.textContent = "Error connecting to server.";
+     
     }
   });
+
+function closePopup(){
+  responseMsgContainer.classList.remove("show")
+
+}
+responseMsgContainer.addEventListener("click",function(e){
+  if(e.target===responseMsgContainer){
+    closePopup()
+  }
+})

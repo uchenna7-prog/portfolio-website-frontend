@@ -257,7 +257,7 @@ background-position: center;
 background-size: cover;
 position: relative;
 width: 100%;
-z-index: 1;
+z-index: 2;
 padding-bottom: 20px;
 padding-left: 20px;
 padding-right: 20px; 
@@ -639,36 +639,69 @@ form{
   gap:10px;
 }
 
-
-#responseMessage{
-  position: absolute;
-  z-index: 5;
-  top: 15%;
-  right: 10%;
-  height: 50%;
-  width: 80%;
-  background-color: #a5c5db;
-  margin-right: auto ;
-  margin-left: auto;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  padding-top: 15%;
-  padding-bottom: 15%;
+#send-button:hover{
+  transform: scale(1.04);
+}
+#response-message-container{
   display: none;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+#status-icon{
+  background-color: white;
+  font-size: 30px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  animation: fadeIn 1s ease;
+}
+#popup{
+  position: fixed;
+  top: 25%;
+  left:30%;
+  background-color:#a5c5db;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4);
   text-align: center;
+  max-width:40%;
+  width: 90%;
+  z-index: 1500;
   opacity: 0;
-
-  transition: display 2s ease-in-out, opacity 2s ease-in-out;
+  animation: popupAppear 0.4s ease forwards;
 }
 
+@keyframes fadeIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes popupAppear{
+  to{
+    opacity:1;
+  }
+
+}
+
+#response-message-container.show{
+  display:block;
+}
 #footer-page{
   background: radial-gradient(125% 125% at 50% 10%,white 40%,#0b5085 100%);
   display:flex;
   flex-direction: column;
   font-size: 1rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   color:black;
   position: relative;
   width: 100%;
