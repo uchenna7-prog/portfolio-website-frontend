@@ -281,9 +281,8 @@ window.addEventListener('scroll',()=>{
   const timelineHeight = timeline.offsetHeight
   const timelineBottom = timelineTop + timeline.offsetHeight
 
-  const scrollY = window.screenY + window.innerHeight / 2
-
-  const progressLineHeight = Math.min(Math.max(scrollY - timelineTop,0),timeline.offsetHeight)
+ 
+  const progressLineHeight = Math.min(Math.max(window.innerHeight / 2 - timelineTop,0),timeline.offsetHeight)
 
   const firstTimeLineDot = document.getElementById('first-dot')
   const secondTimeLineDot = document.getElementById('second-dot')
@@ -314,62 +313,80 @@ window.addEventListener('scroll',()=>{
 
 
 
-const form = document.getElementById('contact-form');
+// script.js
+const form = document.getElementById('contact-form'); 
 const responseMsgContainer = document.getElementById('response-message-container');
-let responseMsg = document.querySelector("#response-message-container p")
-let messageStatus = document.querySelector("#response-message-container h3")
-let statusIcon = document.getElementById("status-icon")
+let responseMsg = document.querySelector("#response-message-container p");
+let messageStatus = document.querySelector("#response-message-container h3");
+let statusIcon = document.getElementById("status-icon");
 
-  form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+  
+    if (!name || !email || !message) {
+        responseMsgContainer.classList.add("show");
+        statusIcon.textContent = "close";
+        statusIcon.style.color = "red";
+        messageStatus.textContent = "Failed";
+        responseMsg.textContent = "Please fill in all fields";
+        return;
+    }
+
+ 
+    const submitBtn = document.getElementById("send-button");
+    const submitBtnText = document.getElementById("send-button-text");
+    const originalBtnHTML = submitBtnText.innerHTML;
+    submitBtnText.innerHTML = "<i class='fa fa-spinner fa-spin' aria-hidden='true'></i> Sending...";
+    submitBtn.disabled = true;
 
     try {
-      const res = await fetch('https://portfolio-website-backend-witp.onrender.com/contact', { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, message })
-      });
+        const res = await fetch('https://portfolio-website-backend-1-ew4l.onrender.com/send', { 
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ name, email, message })
+        });
 
-      const data = await res.json();
-      responseMsgContainer.classList.add("show")
-      if (data.success) {
-        statusIcon.textContent = "check"
-        statusIcon.style.color = "green"
-        messageStatus.textContent="Success!"
-        responseMsg.textContent = `Hi ${name}, thanks for reaching out! Your message has been received successfully. I will get back to you as soon as possible.`;
-        form.reset();
-      } 
-      else {
-        statusIcon.textContent = "close"
-        statusIcon.style.color = "red"
-        messageStatus.textContent="Failed!"
-        responseMsg.textContent = "Oops! Your message couldn't be sent.Please check your internet connection and try again.";
-      }
+        const data = await res.json();
 
-    } 
-    
-    catch (error) {
-      statusIcon.textContent = "close"
-      statusIcon.style.color = "red"
-      messageStatus.textContent="Failed!"
-      responseMsgContainer.classList.add("show")
-      responseMsg.textContent = "Error connecting to server.";
-     
+        responseMsgContainer.classList.add("show");
+
+        if (data.success === true) {
+            statusIcon.textContent = "check";
+            statusIcon.style.color = "green";
+            messageStatus.textContent = "Success!";
+            responseMsg.textContent = `Hi ${name}, thanks for reaching out! Your message has been received successfully. I will get back to you as soon as possible.`;
+            form.reset();
+        } else {
+            statusIcon.textContent = "close";
+            statusIcon.style.color = "red";
+            messageStatus.textContent = "Failed!";
+            responseMsg.textContent = data.message || "Oops! Your message couldn't be sent. Please check your internet connection and try again.";
+        }
+
+    } catch (error) {
+        statusIcon.textContent = "close";
+        statusIcon.style.color = "red";
+        messageStatus.textContent = "Failed!";
+        responseMsgContainer.classList.add("show");
+        responseMsg.textContent = "Error connecting to server.";
+    } finally {
+        submitBtnText.innerHTML = originalBtnHTML;
+        submitBtn.disabled = false;
     }
-  });
+});
 
-function closePopup(){
-  responseMsgContainer.classList.remove("show")
 
+function closePopup() {
+    responseMsgContainer.classList.remove("show");
 }
-responseMsgContainer.addEventListener("click",function(e){
-  if(e.target===responseMsgContainer){
-    closePopup()
-  }
-})
+
+responseMsgContainer.addEventListener("click", function(e){
+    if (e.target === responseMsgContainer) {
+        closePopup();
+    }
+});
